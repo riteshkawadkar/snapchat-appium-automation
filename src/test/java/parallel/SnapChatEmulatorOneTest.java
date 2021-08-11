@@ -1,4 +1,4 @@
-package snapchat;
+package parallel;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,10 +25,12 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class SnapChatEmulator {
+public class SnapChatEmulatorOneTest {
 	
 	private final static String APPIUM_SERVER_URL = "http://127.0.0.1:4723/wd/hub";	
-    private AppiumDriver<MobileElement> driver;
+	
+
+	 private AppiumDriver<MobileElement> driver;    
     
 
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
@@ -44,6 +47,8 @@ public class SnapChatEmulator {
 	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "11");
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
 	    capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+	    capabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, "8201");
+
 	    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "120");
 	    
 
@@ -51,7 +56,7 @@ public class SnapChatEmulator {
 	    capabilities.setCapability("appPackage", "com.snapchat.android");
 	    capabilities.setCapability("appActivity", "com.snapchat.android.LandingPageActivity");
 	    
-	    driver = new AppiumDriver<MobileElement>(url, capabilities);
+        driver = new AppiumDriver<MobileElement>(url, capabilities);
 	}
 	
 	
@@ -70,49 +75,47 @@ public class SnapChatEmulator {
     @Test
     public void openApp() throws MalformedURLException, InterruptedException
     {
-    	
+
         Date date = new Date();  
         System.out.println(formatter.format(date));  
+        System.out.println("The thread ID for Chrome Test is "+ Thread.currentThread().getId());
         
         WebDriverWait wait = new WebDriverWait(driver, 240);
         
         TouchAction t =new TouchAction(driver);
 
-        Thread.sleep(3000);
         
         for (int i = 0; i < 1000; i++) {
         	
 
-        	MobileElement emojiiButton = (MobileElement) wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("com.snapchat.android:id/camera_sounds_button")))); 
+        	MobileElement emojiiButton = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/camera_sounds_button")))); 
 //        	System.out.println("emojiiButton Found");
         	
-        	Thread.sleep(2000);
-        	t.tap(PointOption.point(540, 1510)).perform();
+        	Thread.sleep(1500);
+        	t.tap(PointOption.point(538, 1510)).perform();
         	System.out.println("clicked on big button - " + i );
         	
         	
-        	Thread.sleep(4000);
-//        	MobileElement timerIcon = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/timer_icon")))); 
-        	MobileElement send_button = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/send_btn_hint_label")))); 
-        	send_button.click();
+        	Thread.sleep(2000);
+        	MobileElement timerIcon = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/timer_icon")))); 
 //            System.out.println("timer found ");
-//        	t.tap(PointOption.point(912, 1849)).perform();
+        	t.tap(PointOption.point(907, 1730)).perform();
 //        	System.out.println("clicked on send ");
             
         	
-        	Thread.sleep(3000);
+        	Thread.sleep(4000);
         	MobileElement friend = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.View[6]")))); 
 //            System.out.println("friend found ");
             friend.click();
 //            System.out.println("clicked fwill ");
             
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             MobileElement send = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/send_to_send_button")))); 
             send.click();
 //            System.out.println("send found ");
             
             
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             driver.navigate().back();
 //            System.out.println("navigated back found ");
             

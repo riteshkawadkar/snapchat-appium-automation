@@ -15,7 +15,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class SnapTest {
+public class SendSnapRealDeviceTest {
 	
 	AppiumDriver<MobileElement> driver;
 
@@ -26,61 +26,57 @@ public class SnapTest {
         cap.setCapability("noReset", true);
         cap.setCapability("fullReset", false);
         cap.setCapability("deviceName", "OnePlus 9R");
-//        cap.setCapability("udid", "1c585e49");
+        
+        // Provide your device UDID - command to get it - "adb devices"
         cap.setCapability("udid", "1c585e49");
+        
+     	// Provide your device platform
         cap.setCapability("platformName", "Android");
+        
+        // Provide your device platformVersion visible in Phone settings
         cap.setCapability("platformVersion", "11");
+        
+        
         cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "60");
-
         cap.setCapability("appPackage", "com.snapchat.android");
         cap.setCapability("appActivity", "com.snapchat.android.LandingPageActivity");
 
+        
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
         driver = new AppiumDriver<MobileElement>(url, cap);
         
         WebDriverWait wait = new WebDriverWait(driver, 240);
         
-//        Thread.sleep(400);
-        
-//        emojiiButton.click();
+        //wait for activity to launch
+        Thread.sleep(1000);
         
         TouchAction t =new TouchAction(driver);
         
         for (int i = 0; i < 10000; i++) {
-//        	Thread.sleep((long)(Math.random() * 1000));
         	System.out.println("clicked on big button - " + i );
         	
+        	// wait for emojiIcon to appear
         	MobileElement emojiiButton = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/lenses_camera_button_icon")))); 
         	
+        	// click on camera button
         	t.tap(PointOption.point(546, 2043)).perform();
 
-        	
-//            MobileElement uploadLens = driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc='56976340891:SCAN_UNLOCKED']/android.widget.ImageView"));
-//            uploadLens.click();
-//            Thread.sleep(100);
-            
-        	
+        	// wait for send_button to appear and then click       	
         	MobileElement send_button = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/send_btn_hint_label")))); 
         	send_button.click();
-//            Thread.sleep(100);
             
-            
+        	// wait for friend list to be visible and then click - Modify View[6] to any number 
             MobileElement friend = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.View[6]")))); 
             friend.click();
-//            Thread.sleep(100);
             
+            // wait for send to appear and then click     
             MobileElement send = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/send_to_send_button")))); 
             send.click();
-//            Thread.sleep(100);
             
+            // Go back to main page 
             driver.navigate().back();
-//            Thread.sleep(300);
 		}
-        
-        
-        
 
-        System.out.println("App Started");
     }
 
 }

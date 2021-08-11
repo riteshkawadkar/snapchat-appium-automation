@@ -1,4 +1,4 @@
-package snapchat;
+package parallel;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,13 +25,12 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class SnapChatEmulatorOneTest {
+public class SnapChatEmulatorTwoTest {
 	
 	private final static String APPIUM_SERVER_URL = "http://127.0.0.1:4723/wd/hub";	
 	
 
 	 private AppiumDriver<MobileElement> driver;    
-    
 
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
     
@@ -46,8 +45,8 @@ public class SnapChatEmulatorOneTest {
 	    capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "11");
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
-	    capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-	    capabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, "8201");
+	    capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5556");
+	    capabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, "8200");
 
 	    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "120");
 	    
@@ -78,7 +77,7 @@ public class SnapChatEmulatorOneTest {
 
         Date date = new Date();  
         System.out.println(formatter.format(date));  
-        System.out.println("The thread ID for Chrome Test is "+ Thread.currentThread().getId());
+        
         
         WebDriverWait wait = new WebDriverWait(driver, 240);
         
@@ -93,7 +92,7 @@ public class SnapChatEmulatorOneTest {
         	
         	Thread.sleep(1500);
         	t.tap(PointOption.point(538, 1510)).perform();
-        	System.out.println("clicked on big button - " + i );
+        	System.out.println("The thread ID for Chrome Test is "+ Thread.currentThread().getId() + " - clicked on big button - " + i );
         	
         	
         	Thread.sleep(2000);
@@ -109,13 +108,13 @@ public class SnapChatEmulatorOneTest {
             friend.click();
 //            System.out.println("clicked fwill ");
             
-            Thread.sleep(1500);
+            Thread.sleep(300);
             MobileElement send = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/send_to_send_button")))); 
             send.click();
 //            System.out.println("send found ");
             
             
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.navigate().back();
 //            System.out.println("navigated back found ");
             

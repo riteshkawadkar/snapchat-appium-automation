@@ -3,8 +3,8 @@
 <suite name = "Parallel Testing Suite">
    <test name = "Parallel Tests" parallel = "classes" thread-count = "2">
       <classes>
-         <class name = "snapchat.SnapChatEmulatorOneTest" />
-         <class name = "snapchat.SnapChatEmulatorTwoTest" />
+         <class name = "parallel.SnapChatEmulatorOneTest" />
+         <class name = "parallel.SnapChatEmulatorTwoTest" />
       </classes>
    </test>
 </suite>
