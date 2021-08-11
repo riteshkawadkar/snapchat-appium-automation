@@ -23,6 +23,6 @@ Current project is configured for Android devce with SDK 11
 
 # Output
 
-[![Snapchat Real Devcie Automation](https://i9.ytimg.com/vi/j3c8Aba-YzI/mq1.jpg?sqp=CKD0zYgG&rs=AOn4CLBa_ry3U4Dcsk7KDFtoMAlXnL1c4Q&retry=5)](https://www.youtube.com/watch?v=j3c8Aba-YzI)
+[![Snapchat Real Devcie Automation](https://www.youtube.com/watch?v=j3c8Aba-YzI)
 
 
