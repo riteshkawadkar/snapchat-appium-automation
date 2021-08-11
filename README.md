@@ -14,3 +14,9 @@ Current project is configured for Android devce with SDK 11
 3. [Eclipse](https://www.eclipse.org/)
 4. Android Device
 5. [Android Studio](https://developer.android.com/studio) [for testing on emulator]
+
+# How to run
+
+1. Install all the pre-requisties and follow steps to configure Appium and connect real device
+2. You can get device udid by using comand "adb devices"
+3. The project is configured using maven and testng - Run realdevice.xml
