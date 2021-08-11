@@ -38,7 +38,7 @@ public class SnapTest {
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
         driver = new AppiumDriver<MobileElement>(url, cap);
         
-        WebDriverWait wait = new WebDriverWait(driver, 120);
+        WebDriverWait wait = new WebDriverWait(driver, 240);
         
 //        Thread.sleep(400);
         
@@ -48,28 +48,28 @@ public class SnapTest {
         
         for (int i = 0; i < 10000; i++) {
 //        	Thread.sleep((long)(Math.random() * 1000));
+        	System.out.println("clicked on big button - " + i );
         	
-        	MobileElement emojiiButton = (MobileElement) wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("com.snapchat.android:id/lenses_camera_button_icon")))); 
+        	MobileElement emojiiButton = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/lenses_camera_button_icon")))); 
         	
         	t.tap(PointOption.point(546, 2043)).perform();
-        	
-        	
+
         	
 //            MobileElement uploadLens = driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc='56976340891:SCAN_UNLOCKED']/android.widget.ImageView"));
 //            uploadLens.click();
 //            Thread.sleep(100);
             
         	
-            MobileElement sendButton = (MobileElement) wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("com.snapchat.android:id/send_btn")))); 
-            sendButton.click();
+        	MobileElement send_button = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/send_btn_hint_label")))); 
+        	send_button.click();
 //            Thread.sleep(100);
             
             
-            MobileElement friend = (MobileElement) wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.View[6]")))); 
+            MobileElement friend = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.View[6]")))); 
             friend.click();
 //            Thread.sleep(100);
             
-            MobileElement send = (MobileElement) wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("com.snapchat.android:id/send_to_send_button")))); 
+            MobileElement send = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.snapchat.android:id/send_to_send_button")))); 
             send.click();
 //            Thread.sleep(100);
             
