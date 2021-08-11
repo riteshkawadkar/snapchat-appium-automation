@@ -20,3 +20,7 @@ Current project is configured for Android devce with SDK 11
 1. Install all the pre-requisties and follow steps to configure Appium and connect real device
 2. You can get device udid by using comand "adb devices"
 3. The project is configured using maven and testng - Run realdevice.xml
+
+# Output
+
+[![Snapchat Real Devcie Automation](https://i9.ytimg.com/vi/j3c8Aba-YzI/mq1.jpg?sqp=CKD0zYgG&rs=AOn4CLBa_ry3U4Dcsk7KDFtoMAlXnL1c4Q&retry=5)](https://youtu.be/j3c8Aba-YzI)
